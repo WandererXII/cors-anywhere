@@ -26,6 +26,7 @@ cors_proxy.createServer({
   requireHeader: [],
   checkRateLimit: checkRateLimit,
   removeHeaders: [
+    'set-cookie',
     'cookie',
     'cookie2',
     // Strip Heroku-specific headers
@@ -46,7 +47,8 @@ cors_proxy.createServer({
   },
   // modifying reponse headers.
   setResponseHeaders:{
-    "cross-origin-resource-policy":"cross-origin"
+    "cross-origin-resource-policy":"cross-origin",
+    "cache-control": "max-age=259200"
   }
 }).listen(port, host, function() {
   console.log('Running CORS Anywhere on ' + host + ':' + port);
