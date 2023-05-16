@@ -23,7 +23,7 @@ var cors_proxy = require('./lib/cors-anywhere');
 cors_proxy.createServer({
   originBlacklist: originBlacklist,
   originWhitelist: originWhitelist,
-  requireHeader: ['origin', 'x-requested-with'],
+  requireHeader: [],
   checkRateLimit: checkRateLimit,
   removeHeaders: [
     'cookie',
@@ -46,8 +46,7 @@ cors_proxy.createServer({
   },
   // modifying reponse headers.
   setResponseHeaders:{
-    "access-control-allow-origin":"http://localhost:3000",
-    "access-control-allow-credentials":true,
+    "cross-origin-resource-policy":"cross-origin"
   }
 }).listen(port, host, function() {
   console.log('Running CORS Anywhere on ' + host + ':' + port);
